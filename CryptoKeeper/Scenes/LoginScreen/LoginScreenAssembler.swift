@@ -9,7 +9,8 @@ import UIKit
 
 final class LoginScreenAssembler {
 	/// Сборка модуля авторизации
-	/// - Parameter loginResultClosure: замыкание оповещающие о результате авторизации
+	/// - Parameter onSuccess: замыкание оповещающие об успехе авторизации
+	/// - Parameter onFailure: замыкание оповещающие о  неудаче авторизации
 	/// - Returns: viewController
 	func assembly(
 		onSuccess: @escaping () -> Void,
