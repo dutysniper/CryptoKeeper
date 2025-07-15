@@ -54,7 +54,7 @@ final class MainCoordinator: BaseCoordinator {
 
 	func showMainScreen() {
 		print("Push newVC")
-		let viewController = MainScreenViewController()
-		 navigationController.pushViewController(viewController, animated: true)
+		let viewController = MainScreenAssembler().assembly()
+		 navigationController.setViewControllers([viewController], animated: true)
 	}
 }
