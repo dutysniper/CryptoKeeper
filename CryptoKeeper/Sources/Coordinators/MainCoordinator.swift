@@ -5,8 +5,6 @@
 //  Created by Константин Натаров on 15.07.2025.
 //
 
-import Foundation
-
 import UIKit
 
 final class MainCoordinator: BaseCoordinator {
@@ -28,47 +26,29 @@ final class MainCoordinator: BaseCoordinator {
 	}
 
 	func showLoginScreen() {
-		let viewController = LoginScreenAssembler().assembly()
+		let viewController = LoginScreenAssembler().assembly(
+			onSuccess: { [weak self] in
+				self?.showMainScreen()
+			},
+			onFailure: { [weak self] errorMessage in
+				self?.showLoginErrorAlert(message: errorMessage)
+			}
+		)
 		navigationController.pushViewController(viewController, animated: true)
 	}
 
-//	func showMainScreen() {
-//		let viewController = MainScreenAssembler().assembly(sortClosure: showSortWindow(), detailClosure: showDetailScreen(with:))
-//		navigationController.pushViewController(viewController, animated: true)
-//	}
-//
-//	func showDetailScreen(with viewModel: Post) {
-//		let viewController = DetalScreenAssembler().assembly(with: viewModel)
-//		navigationController.pushViewController(viewController, animated: true)
-//	}
-//
-//	func showSortWindow() -> SortClosure {
-//		return { [weak self] in
-//			self?.showSortScreen()
-//			return true
-//		}
-//	}
-//
-//	func showSortScreen() {
-//		guard let mainVC = navigationController.viewControllers.last as? MainScreenViewController else { return }
-//
-//		let coordinator = SortCoordinator(
-//			navigationController: navigationController,
-//			onSortSelected: { [weak self] sortType in
-//				self?.handleSortSelection(sortType)
-//				if let coordinator = self?.childCoordinators.first(where: { $0 is SortCoordinator }) {
-//					self?.removeDependency(coordinator)
-//				}
-//			},
-//			initialSortType: mainVC.sortType
-//		)
-//		addDependency(coordinator)
-//		coordinator.start()
-//	}
-//
-//
-//	private func handleSortSelection(_ sortType: SortScreen.SortType) {
-//		guard let mainVC = navigationController.viewControllers.last as? MainScreenViewController else { return }
-//		mainVC.interactor?.apply(sort: sortType)
-//	}
+	func showMainScreen() {
+		print("Push newVC")
+//		navigationController.pushViewController(MainScreenViewContoller, animated: true)
+	}
+
+	private func showLoginErrorAlert(message: String) {
+		let alert = UIAlertController(
+			title: "Ошибка",
+			message: message,
+			preferredStyle: .alert
+		)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		navigationController.present(alert, animated: true)
+	}
 }

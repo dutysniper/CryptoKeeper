@@ -15,6 +15,7 @@ enum LoginScreen {
 
 	struct Response {
 		let isSuccess: Bool
+		let errorMessage: String?
 	}
 
 	struct ViewModel {

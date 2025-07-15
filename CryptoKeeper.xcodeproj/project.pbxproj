@@ -19,7 +19,21 @@
 		91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F842E2666F800C2B98E /* AppCoordinator.swift */; };
 		91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F862E26675000C2B98E /* MainCoordinator.swift */; };
 		91F21F892E2667CD00C2B98E /* LoginScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */; };
+		91F21F8C2E266A7000C2B98E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91F21F8B2E266A7000C2B98E /* SnapKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91F21F902E266D0800C2B98E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		91F21F5D2E265F9800C2B98E /* CryptoKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F21F8C2E266A7000C2B98E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,12 +166,16 @@
 				91F21F592E265F9800C2B98E /* Sources */,
 				91F21F5A2E265F9800C2B98E /* Frameworks */,
 				91F21F5B2E265F9800C2B98E /* Resources */,
+				91F21F902E266D0800C2B98E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CryptoKeeper;
+			packageProductDependencies = (
+				91F21F8B2E266A7000C2B98E /* SnapKit */,
+			);
 			productName = CryptoKeeper;
 			productReference = 91F21F5D2E265F9800C2B98E /* CryptoKeeper.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +204,9 @@
 				Base,
 			);
 			mainGroup = 91F21F542E265F9800C2B98E;
+			packageReferences = (
+				91F21F8A2E266A7000C2B98E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 91F21F5E2E265F9800C2B98E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -443,6 +465,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91F21F8A2E266A7000C2B98E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91F21F8B2E266A7000C2B98E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91F21F8A2E266A7000C2B98E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91F21F552E265F9800C2B98E /* Project object */;
 }
