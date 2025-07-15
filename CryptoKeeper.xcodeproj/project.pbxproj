@@ -20,6 +20,7 @@
 		91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F862E26675000C2B98E /* MainCoordinator.swift */; };
 		91F21F892E2667CD00C2B98E /* LoginScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */; };
 		91F21F8C2E266A7000C2B98E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91F21F8B2E266A7000C2B98E /* SnapKit */; };
+		91F21F932E26A4C400C2B98E /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F922E26A4C400C2B98E /* MainScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +51,7 @@
 		91F21F842E2666F800C2B98E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		91F21F862E26675000C2B98E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenAssembler.swift; sourceTree = "<group>"; };
+		91F21F922E26A4C400C2B98E /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		91F21F742E26619700C2B98E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				91F21F912E26A4B000C2B98E /* MainScreen */,
 				91F21F7B2E26646900C2B98E /* LoginScreen */,
 			);
 			path = Scenes;
@@ -154,6 +157,14 @@
 				91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */,
 			);
 			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		91F21F912E26A4B000C2B98E /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				91F21F922E26A4C400C2B98E /* MainScreenViewController.swift */,
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +252,7 @@
 				91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */,
 				91F21F7D2E2664AC00C2B98E /* LoginScreenInteractor.swift in Sources */,
 				91F21F632E265F9800C2B98E /* SceneDelegate.swift in Sources */,
+				91F21F932E26A4C400C2B98E /* MainScreenViewController.swift in Sources */,
 				91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */,
 				91F21F832E2666CB00C2B98E /* ICoordinator.swift in Sources */,
 			);

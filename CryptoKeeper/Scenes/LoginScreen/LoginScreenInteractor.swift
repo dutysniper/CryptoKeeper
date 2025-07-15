@@ -35,6 +35,4 @@ final class LoginScreenInteractor: ILoginScreenInteractor {
 			errorMessage: isSuccess ? nil : "Введены неправильный логин или пароль"
 		))
 	}
-
-	// MARK: - Private methods
 }

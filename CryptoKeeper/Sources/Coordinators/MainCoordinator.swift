@@ -10,17 +10,14 @@ import UIKit
 final class MainCoordinator: BaseCoordinator {
 
 	// MARK: - Dependencies
-
 	private let navigationController: UINavigationController
 
 	// MARK: - Initialization
-
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
 
 	// MARK: - Internal methods
-
 	override func start() {
 		showLoginScreen()
 	}
@@ -31,24 +28,33 @@ final class MainCoordinator: BaseCoordinator {
 				self?.showMainScreen()
 			},
 			onFailure: { [weak self] errorMessage in
-				self?.showLoginErrorAlert(message: errorMessage)
+				guard let topVC = self?.navigationController.topViewController as? LoginScreenViewController else { return }
+				self?.showLoginErrorAlert(on: topVC, message: errorMessage)
 			}
 		)
 		navigationController.pushViewController(viewController, animated: true)
 	}
 
-	func showMainScreen() {
-		print("Push newVC")
-//		navigationController.pushViewController(MainScreenViewContoller, animated: true)
-	}
-
-	private func showLoginErrorAlert(message: String) {
+	private func showLoginErrorAlert(on viewController: LoginScreenViewController, message: String) {
 		let alert = UIAlertController(
 			title: "Ошибка",
 			message: message,
 			preferredStyle: .alert
 		)
-		alert.addAction(UIAlertAction(title: "OK", style: .default))
-		navigationController.present(alert, animated: true)
+
+		alert.addAction(UIAlertAction(title: "Повторить", style: .default) { _ in
+		})
+
+		alert.addAction(UIAlertAction(title: "Отменить", style: .destructive) { _ in
+			viewController.clearTextFields()
+		})
+
+		viewController.present(alert, animated: true)
+	}
+
+	func showMainScreen() {
+		print("Push newVC")
+		let viewController = MainScreenViewController()
+		 navigationController.pushViewController(viewController, animated: true)
 	}
 }
