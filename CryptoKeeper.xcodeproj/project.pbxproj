@@ -9,19 +9,33 @@
 /* Begin PBXBuildFile section */
 		91F21F612E265F9800C2B98E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F602E265F9800C2B98E /* AppDelegate.swift */; };
 		91F21F632E265F9800C2B98E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F622E265F9800C2B98E /* SceneDelegate.swift */; };
-		91F21F652E265F9800C2B98E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F642E265F9800C2B98E /* ViewController.swift */; };
+		91F21F652E265F9800C2B98E /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F642E265F9800C2B98E /* LoginScreenViewController.swift */; };
 		91F21F6A2E265F9A00C2B98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91F21F692E265F9A00C2B98E /* Assets.xcassets */; };
 		91F21F6D2E265F9A00C2B98E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 91F21F6C2E265F9A00C2B98E /* Base */; };
+		91F21F7D2E2664AC00C2B98E /* LoginScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F7C2E2664AB00C2B98E /* LoginScreenInteractor.swift */; };
+		91F21F7F2E2664B600C2B98E /* LoginScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F7E2E2664B600C2B98E /* LoginScreenPresenter.swift */; };
+		91F21F812E2664C300C2B98E /* LoginScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F802E2664C300C2B98E /* LoginScreenModel.swift */; };
+		91F21F832E2666CB00C2B98E /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F822E2666CB00C2B98E /* ICoordinator.swift */; };
+		91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F842E2666F800C2B98E /* AppCoordinator.swift */; };
+		91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F862E26675000C2B98E /* MainCoordinator.swift */; };
+		91F21F892E2667CD00C2B98E /* LoginScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		91F21F5D2E265F9800C2B98E /* CryptoKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F21F602E265F9800C2B98E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91F21F622E265F9800C2B98E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		91F21F642E265F9800C2B98E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		91F21F642E265F9800C2B98E /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		91F21F692E265F9A00C2B98E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91F21F6C2E265F9A00C2B98E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91F21F6E2E265F9A00C2B98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F21F7C2E2664AB00C2B98E /* LoginScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenInteractor.swift; sourceTree = "<group>"; };
+		91F21F7E2E2664B600C2B98E /* LoginScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenPresenter.swift; sourceTree = "<group>"; };
+		91F21F802E2664C300C2B98E /* LoginScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenModel.swift; sourceTree = "<group>"; };
+		91F21F822E2666CB00C2B98E /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
+		91F21F842E2666F800C2B98E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		91F21F862E26675000C2B98E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenAssembler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +72,6 @@
 				91F21F762E2661B300C2B98E /* Resourcers */,
 				91F21F752E2661A500C2B98E /* Sources */,
 				91F21F742E26619700C2B98E /* Scenes */,
-				91F21F642E265F9800C2B98E /* ViewController.swift */,
 			);
 			path = CryptoKeeper;
 			sourceTree = "<group>";
@@ -66,6 +79,7 @@
 		91F21F742E26619700C2B98E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				91F21F7B2E26646900C2B98E /* LoginScreen */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -101,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				91F21F7A2E26629F00C2B98E /* Common */,
+				91F21F842E2666F800C2B98E /* AppCoordinator.swift */,
+				91F21F862E26675000C2B98E /* MainCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -108,8 +124,21 @@
 		91F21F7A2E26629F00C2B98E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				91F21F822E2666CB00C2B98E /* ICoordinator.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		91F21F7B2E26646900C2B98E /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				91F21F642E265F9800C2B98E /* LoginScreenViewController.swift */,
+				91F21F7C2E2664AB00C2B98E /* LoginScreenInteractor.swift */,
+				91F21F7E2E2664B600C2B98E /* LoginScreenPresenter.swift */,
+				91F21F802E2664C300C2B98E /* LoginScreenModel.swift */,
+				91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */,
+			);
+			path = LoginScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,9 +211,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91F21F652E265F9800C2B98E /* ViewController.swift in Sources */,
+				91F21F652E265F9800C2B98E /* LoginScreenViewController.swift in Sources */,
+				91F21F812E2664C300C2B98E /* LoginScreenModel.swift in Sources */,
 				91F21F612E265F9800C2B98E /* AppDelegate.swift in Sources */,
+				91F21F7F2E2664B600C2B98E /* LoginScreenPresenter.swift in Sources */,
+				91F21F892E2667CD00C2B98E /* LoginScreenAssembler.swift in Sources */,
+				91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */,
+				91F21F7D2E2664AC00C2B98E /* LoginScreenInteractor.swift in Sources */,
 				91F21F632E265F9800C2B98E /* SceneDelegate.swift in Sources */,
+				91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */,
+				91F21F832E2666CB00C2B98E /* ICoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
