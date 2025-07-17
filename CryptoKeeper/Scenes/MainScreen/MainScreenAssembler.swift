@@ -8,10 +8,10 @@
 import UIKit
 
 final class MainScreenAssembler {
-	func assembly(onExit: @escaping () -> Void) -> MainScreenViewController {
+	func assembly(onExit: @escaping () -> Void, onTransit: @escaping () -> Void) -> MainScreenViewController {
 		let viewController = MainScreenViewController()
 		let networkManager = NetworkManager()
-		let presenter = MainScreenPresenter(viewController: viewController, onExit: onExit)
+		let presenter = MainScreenPresenter(viewController: viewController, onExit: onExit, onTransit: onTransit)
 		let interactor = MainScreenInteractor(presenter: presenter, networkManager: networkManager)
 
 		viewController.interactor = interactor

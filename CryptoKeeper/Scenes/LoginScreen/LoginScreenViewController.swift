@@ -63,6 +63,9 @@ final class LoginScreenViewController: UIViewController {
 		view.addGestureRecognizer(tapGesture)
 
 		layout()
+		if UserDefaults.standard.bool(forKey: "isSuccessLogin") {
+			
+		}
 	}
 
 	@objc private func dismissKeyboard() {

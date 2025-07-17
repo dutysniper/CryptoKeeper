@@ -16,13 +16,14 @@ final class LoginScreenAssembler {
 		onSuccess: @escaping () -> Void,
 		onFailure: @escaping (String) -> Void
 	) -> LoginScreenViewController {
+		let keychainManager = KeychainManager()
 		let viewController = LoginScreenViewController()
 		let presenter = LoginScreenPresenter(
 			viewController: viewController,
 			onSuccess: onSuccess,
 			onFailure: onFailure
 		)
-		let interactor = LoginScreenInteractor(presenter: presenter)
+		let interactor = LoginScreenInteractor(presenter: presenter, keychainManager: keychainManager)
 
 		viewController.interactor = interactor
 

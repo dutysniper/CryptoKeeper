@@ -11,6 +11,7 @@ protocol IMainScreenPresenter {
 	func present(response: MainScreenModel.Response)
 	func present(sortedResponse: [MainScreenModel.ViewModel.CurrencyDisplay])
 	func popToLogin()
+	func presentDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay)
 }
 
 final class MainScreenPresenter: IMainScreenPresenter {
@@ -21,11 +22,13 @@ final class MainScreenPresenter: IMainScreenPresenter {
 	// MARK: - Private methods
 	private var isAscendingSort = true
 	private let onExit: () -> Void
+	private let onTransit: () -> Void
 
 	// MARK: - Initialization
-	init(viewController: IMainScreenViewController?, onExit: @escaping () -> Void) {
+	init(viewController: IMainScreenViewController?, onExit: @escaping () -> Void, onTransit: @escaping () -> Void) {
 		self.viewController = viewController
 		self.onExit = onExit
+		self.onTransit = onTransit
 	}
 
 	// MARK: - Public methods
@@ -43,7 +46,12 @@ final class MainScreenPresenter: IMainScreenPresenter {
 	}
 
 	func popToLogin() {
+		print("logout presenter")
 		onExit()
+	}
+
+	func presentDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
+
 	}
 
 	// MARK: - Private methods
@@ -58,6 +66,8 @@ final class MainScreenPresenter: IMainScreenPresenter {
 				name: currency.name,
 				price: price,
 				priceChange: priceChange,
+				capitalization: String(currency.metrics.marketCap.capitalization),
+				supply: String(currency.metrics.supply.circulating),
 				changeColor: color
 			)
 		}

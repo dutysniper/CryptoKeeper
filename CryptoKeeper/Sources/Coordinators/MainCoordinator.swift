@@ -11,6 +11,7 @@ final class MainCoordinator: BaseCoordinator {
 
 	// MARK: - Dependencies
 	private let navigationController: UINavigationController
+	private let keychainManager = KeychainManager()
 
 	// MARK: - Initialization
 	init(navigationController: UINavigationController) {
@@ -19,8 +20,11 @@ final class MainCoordinator: BaseCoordinator {
 
 	// MARK: - Internal methods
 	override func start() {
-		showLoginScreen()
-//		showMainScreen()
+		if keychainManager.getCredentials()?.login == nil {
+			showLoginScreen()
+		} else {
+			showMainScreen()
+		}
 	}
 
 	func showLoginScreen() {
@@ -81,7 +85,11 @@ final class MainCoordinator: BaseCoordinator {
 			image: UIImage(named: "Account"),
 			selectedImage: UIImage(named: "Account")
 		)
-		let mainViewController = MainScreenAssembler().assembly(onExit: showLoginScreen)
+		let mainViewController = MainScreenAssembler().assembly(onExit: { [weak self] in
+			self?.navigationController.setViewControllers([self?.createLoginScreen() ?? UIViewController()],
+														  animated: true)
+		}, onTransit: showDetailScreen)
+
 		mainViewController.tabBarItem = UITabBarItem(
 			title: "Home",
 			image: UIImage(named: "Home"),
@@ -119,5 +127,22 @@ final class MainCoordinator: BaseCoordinator {
 		}
 
 		 navigationController.setViewControllers([tabBarController], animated: true)
+	}
+
+	func showDetailScreen() {
+		
+	}
+
+	private func createLoginScreen() -> UIViewController {
+		print("create loginscreen")
+		return LoginScreenAssembler().assembly(
+			onSuccess: { [weak self] in
+				self?.showMainScreen()
+			},
+			onFailure: { [weak self] errorMessage in
+				guard let topVC = self?.navigationController.topViewController as? LoginScreenViewController else { return }
+				self?.showLoginErrorAlert(on: topVC, message: errorMessage)
+			}
+		)
 	}
 }

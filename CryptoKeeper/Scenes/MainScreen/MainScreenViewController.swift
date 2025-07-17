@@ -219,7 +219,8 @@ private extension MainScreenViewController {
 	}
 
 	@objc func logOut() {
-		navigationController?.popToRootViewController(animated: true)
+		print("logout vc")
+		interactor?.closeScreen()
 	}
 
 	@objc func buttonTapped() {
@@ -299,6 +300,11 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
 		cell.configure(with: viewModel.currencies[indexPath.row])
 
 		return cell
+	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		guard let coin = viewModel?.currencies[indexPath.row] else { return }
+		interactor?.openDetailScreen(coin: coin)
 	}
 }
 

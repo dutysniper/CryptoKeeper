@@ -11,6 +11,7 @@ protocol IMainScreenInteractor {
 	func fetch()
 	func sortCurrencies(descending: Bool, currencies: [MainScreenModel.ViewModel.CurrencyDisplay])
 	func closeScreen()
+	func openDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay)
 }
 
 final class MainScreenInteractor: IMainScreenInteractor {
@@ -33,6 +34,7 @@ final class MainScreenInteractor: IMainScreenInteractor {
 		networkManager?.fetchData(completion: { [weak self] result in
 			switch result {
 			case .success(let response):
+				print("Капитализация \(response.first?.metrics.marketCap.capitalization)")
 				let response = MainScreenModel.Response(data: response)
 				self?.presenter?.present(response: response)
 			case .failure(let error):
@@ -53,9 +55,12 @@ final class MainScreenInteractor: IMainScreenInteractor {
 	}
 
 	func closeScreen() {
+		print("logout interactor")
 		presenter?.popToLogin()
 	}
 
-
+	func openDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
+		presenter.op
+	}
 	// MARK: - Private methods
 }

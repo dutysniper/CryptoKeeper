@@ -12,12 +12,13 @@ protocol INetworkManager {
 }
 
 final class NetworkManager: INetworkManager {
+	
 	private let baseURL = "https://data.messari.io/api/v1/assets"
 	private let targetSymbols: Set<String> = ["BTC", "ETH", "TRX", "LUNA", "DOT",
 											  "DOGE", "USDT", "XLM", "ADA", "XRP"]
 
 	func fetchData(completion: @escaping (Result<[CryptoCurrency], Error>) -> Void) {
-		let fields = "id,symbol,name,metrics/market_data/price_usd,metrics/market_data/percent_change_usd_last_24_hours"
+		let fields = "id,symbol,name,metrics/market_data/price_usd,metrics/market_data/percent_change_usd_last_24_hours,metrics/marketcap/current_marketcap_usd,metrics/supply/circulating"
 		let urlString = "\(baseURL)?fields=\(fields)&limit=500"
 
 		guard let url = URL(string: urlString) else {
