@@ -9,6 +9,8 @@ import Foundation
 
 protocol IMainScreenInteractor {
 	func fetch()
+	func sortCurrencies(descending: Bool, currencies: [MainScreenModel.ViewModel.CurrencyDisplay])
+	func closeScreen()
 }
 
 final class MainScreenInteractor: IMainScreenInteractor {
@@ -37,6 +39,21 @@ final class MainScreenInteractor: IMainScreenInteractor {
 				print(error.localizedDescription)
 			}
 		})
+	}
+
+	func sortCurrencies(descending: Bool, currencies: [MainScreenModel.ViewModel.CurrencyDisplay]) {
+
+		let sortedCurrencies = currencies.sorted {
+			let price1 = $0.priceChange
+			let price2 = $1.priceChange
+			return descending ? price1 < price2 : price1 > price2
+		}
+
+		presenter?.present(sortedResponse: sortedCurrencies)
+	}
+
+	func closeScreen() {
+		presenter?.popToLogin()
 	}
 
 

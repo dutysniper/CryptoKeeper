@@ -90,6 +90,7 @@ final class LoginScreenViewController: UIViewController {
 		)
 
 		textField.backgroundColor = .white
+		textField.textColor = .black
 		textField.keyboardAppearance = .light
 		textField.layer.cornerRadius = 25
 

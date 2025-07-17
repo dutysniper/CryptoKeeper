@@ -13,22 +13,12 @@ protocol INetworkManager {
 
 final class NetworkManager: INetworkManager {
 	private let baseURL = "https://data.messari.io/api/v1/assets"
-	private let currencies = [
-		"btc",
-		"eth",
-		"tron",
-		"luna",
-		"polkadot",
-		"dogecoin",
-		"tether",
-		"stellar",
-		"cardano",
-		"xrp"
-	]
+	private let targetSymbols: Set<String> = ["BTC", "ETH", "TRX", "LUNA", "DOT",
+											  "DOGE", "USDT", "XLM", "ADA", "XRP"]
 
 	func fetchData(completion: @escaping (Result<[CryptoCurrency], Error>) -> Void) {
-		let symbols = currencies.joined(separator: ",")
-		let urlString = "\(baseURL)?fields=id,symbol,name,metrics/market_data/price_usd,metrics/market_data/percent_change_usd_last_24_hours"
+		let fields = "id,symbol,name,metrics/market_data/price_usd,metrics/market_data/percent_change_usd_last_24_hours"
+		let urlString = "\(baseURL)?fields=\(fields)&limit=500"
 
 		guard let url = URL(string: urlString) else {
 			completion(.failure(NetworkError.invalidURL))
@@ -47,17 +37,33 @@ final class NetworkManager: INetworkManager {
 			}
 
 			do {
-				let response = try JSONDecoder().decode(MainScreenModel.Response.self, from: data)
-				completion(.success(response.data))
+				let response = try JSONDecoder().decode(CryptoListResponse.self, from: data)
+				let filtered = response.data.filter { self.targetSymbols.contains($0.symbol.uppercased()) }
+
+				guard !filtered.isEmpty else {
+					completion(.failure(NetworkError.noTargetData))
+					return
+				}
+				DispatchQueue.main.async {
+					completion(.success(filtered))
+				}
 			} catch {
 				completion(.failure(error))
 			}
 		}.resume()
 	}
 
-	enum NetworkError: Error {
+	enum NetworkError: LocalizedError {
 		case invalidURL
 		case noData
-	}
+		case noTargetData
 
+		var errorDescription: String? {
+			switch self {
+			case .invalidURL: return "Некорректный URL"
+			case .noData: return "Данные не получены"
+			case .noTargetData: return "Не найдены данные по целевым криптовалютам"
+			}
+		}
+	}
 }

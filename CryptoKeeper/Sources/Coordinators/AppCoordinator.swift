@@ -32,6 +32,7 @@ final class AppCoordinator: BaseCoordinator {
 
 	func runMainFLow() {
 		let coordinator = MainCoordinator(navigationController: navigationController)
+		navigationController.setNavigationBarHidden(true, animated: false)
 		addDependency(coordinator)
 		coordinator.start()
 	}

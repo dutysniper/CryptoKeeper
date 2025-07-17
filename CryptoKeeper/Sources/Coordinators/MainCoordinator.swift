@@ -20,6 +20,7 @@ final class MainCoordinator: BaseCoordinator {
 	// MARK: - Internal methods
 	override func start() {
 		showLoginScreen()
+//		showMainScreen()
 	}
 
 	func showLoginScreen() {
@@ -32,7 +33,7 @@ final class MainCoordinator: BaseCoordinator {
 				self?.showLoginErrorAlert(on: topVC, message: errorMessage)
 			}
 		)
-		navigationController.pushViewController(viewController, animated: true)
+		navigationController.setViewControllers([viewController], animated: true)
 	}
 
 	private func showLoginErrorAlert(on viewController: LoginScreenViewController, message: String) {
@@ -53,8 +54,70 @@ final class MainCoordinator: BaseCoordinator {
 	}
 
 	func showMainScreen() {
-		print("Push newVC")
-		let viewController = MainScreenAssembler().assembly()
-		 navigationController.setViewControllers([viewController], animated: true)
+		let tabBarController = UITabBarController()
+
+		let firstEmptyScreen = UIViewController()
+		let secondEmptyScreen = UIViewController()
+		let thirdEmptyScreen = UIViewController()
+		let fouthEmptyScreen = UIViewController()
+		firstEmptyScreen.tabBarItem = UITabBarItem(
+			title: "Market",
+			image: UIImage(named: "Market"),
+			selectedImage: UIImage(named: "Market")
+		)
+		secondEmptyScreen.tabBarItem = UITabBarItem(
+			title: "Wallet",
+			image: UIImage(named: "Wallet"),
+			selectedImage: UIImage(named: "Wallet")
+		)
+
+		thirdEmptyScreen.tabBarItem = UITabBarItem(
+			title: "Text",
+			image: UIImage(named: "Text"),
+			selectedImage: UIImage(named: "Text")
+		)
+		fouthEmptyScreen.tabBarItem = UITabBarItem(
+			title: "Account",
+			image: UIImage(named: "Account"),
+			selectedImage: UIImage(named: "Account")
+		)
+		let mainViewController = MainScreenAssembler().assembly(onExit: showLoginScreen)
+		mainViewController.tabBarItem = UITabBarItem(
+			title: "Home",
+			image: UIImage(named: "Home"),
+			selectedImage: UIImage(named: "Home")
+		)
+		let controllers = [
+			mainViewController,
+			firstEmptyScreen,
+			secondEmptyScreen,
+			thirdEmptyScreen,
+			fouthEmptyScreen
+		]
+		tabBarController.viewControllers = controllers
+		tabBarController.selectedIndex = 0
+
+		firstEmptyScreen.tabBarItem.isEnabled = false
+		secondEmptyScreen.tabBarItem.isEnabled = false
+		thirdEmptyScreen.tabBarItem.isEnabled = false
+		fouthEmptyScreen.tabBarItem.isEnabled = false
+		
+		UITabBar.appearance().unselectedItemTintColor = .lightGray
+		UITabBar.appearance().selectedItem?.setTitleTextAttributes([.foregroundColor: UIColor.lightGray], for: .normal)
+		UITabBar.appearance().barTintColor = .white
+		UITabBar.appearance().isTranslucent = false
+
+		if #available(iOS 15.0, *) {
+			let tabBarAppearance = UITabBarAppearance()
+			tabBarAppearance.configureWithOpaqueBackground()
+			tabBarAppearance.backgroundColor = .white
+
+			tabBarAppearance.shadowColor = nil
+
+			UITabBar.appearance().standardAppearance = tabBarAppearance
+			UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+		}
+
+		 navigationController.setViewControllers([tabBarController], animated: true)
 	}
 }
