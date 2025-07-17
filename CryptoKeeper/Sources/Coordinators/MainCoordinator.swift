@@ -129,8 +129,9 @@ final class MainCoordinator: BaseCoordinator {
 		 navigationController.setViewControllers([tabBarController], animated: true)
 	}
 
-	func showDetailScreen() {
-		
+	func showDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
+		let viewController = DetailScreenViewController(viewModel: coin)
+		navigationController.pushViewController(viewController, animated: true)
 	}
 
 	private func createLoginScreen() -> UIViewController {

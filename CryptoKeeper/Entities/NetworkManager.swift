@@ -18,7 +18,7 @@ final class NetworkManager: INetworkManager {
 											  "DOGE", "USDT", "XLM", "ADA", "XRP"]
 
 	func fetchData(completion: @escaping (Result<[CryptoCurrency], Error>) -> Void) {
-		let fields = "id,symbol,name,metrics/market_data/price_usd,metrics/market_data/percent_change_usd_last_24_hours,metrics/marketcap/current_marketcap_usd,metrics/supply/circulating"
+		let fields = "id,symbol,name,metrics/market_data/price_usd,metrics/market_data/percent_change_usd_last_24_hours,metrics/marketcap/current_marketcap_usd,metrics/all_time_high/percent_down,metrics/roi_data/percent_change_last_1_week,metrics/roi_data/percent_change_last_1_month,metrics/roi_data/percent_change_last_1_year,metrics/supply/circulating"
 		let urlString = "\(baseURL)?fields=\(fields)&limit=500"
 
 		guard let url = URL(string: urlString) else {
@@ -49,6 +49,8 @@ final class NetworkManager: INetworkManager {
 					completion(.success(filtered))
 				}
 			} catch {
+				print("decoding error")
+				print(error)
 				completion(.failure(error))
 			}
 		}.resume()

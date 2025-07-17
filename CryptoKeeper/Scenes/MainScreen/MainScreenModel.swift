@@ -25,7 +25,11 @@ enum MainScreenModel {
 			let symbol: String
 			let name: String
 			let price: String
-			let priceChange: String
+			let priceChange: Double
+			let priceChangeInWeek: Double
+			let priceChangeInMonth: Double
+			let priceChangeInYear: Double
+			let priceChangeInAllTime: Double
 			let capitalization: String
 			let supply: String
 			let changeColor: UIColor
@@ -47,6 +51,8 @@ struct CryptoCurrency: Decodable {
 		let marketData: MarketData
 		let marketCap: MarketCap
 		let supply: Supply
+		let roiData: RoiData
+		let allTimeHigh: AllTimeHigh
 
 		struct MarketData: Decodable {
 			let priceUsd: Double
@@ -73,31 +79,33 @@ struct CryptoCurrency: Decodable {
 			}
 		}
 
+		struct RoiData: Decodable {
+			let percentChangeUsdLastWeek: Double?
+			let percentChangeUsdLastMonth: Double?
+			let percentChangeUsdLastyear: Double?
+
+			enum CodingKeys: String, CodingKey {
+				case percentChangeUsdLastWeek = "percent_change_last_1_week"
+				case percentChangeUsdLastMonth = "percent_change_last_1_month"
+				case percentChangeUsdLastyear = "percent_change_last_1_year"
+			}
+		}
+
+		struct AllTimeHigh: Decodable {
+			let percentDown: Double?
+
+			enum CodingKeys: String, CodingKey {
+				case percentDown = "percent_down"
+
+			}
+		}
+
 		enum CodingKeys: String, CodingKey {
 			case marketData = "market_data"
 			case marketCap = "marketcap"
 			case supply = "supply"
+			case roiData = "roi_data"
+			case allTimeHigh = "all_time_high"
 		}
 	}
 }
-
-//struct CoinDetailResponse: Decodable {
-//	let data: CoinDetailData
-//
-//	struct CoinDetailData: Decodable {
-//		let marketData: MarketData
-//		let supply: SupplyData
-//
-//		struct MarketData: Decodable {
-//			let priceUsd: Double
-//			let percentChangeUsdLast24Hours: Double?
-//			let percentChangeUsdLast7Days: Double?
-//			let percentChangeUsdLast1Year: Double?
-//			let marketCap: Double?
-//		}
-//
-//		struct SupplyData: Decodable {
-//			let circulating: Double?
-//		}
-//	}
-//}

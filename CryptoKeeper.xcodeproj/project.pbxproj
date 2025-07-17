@@ -29,6 +29,7 @@
 		91F21F9F2E26AB3700C2B98E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F9E2E26AB3600C2B98E /* NetworkManager.swift */; };
 		91F21FA12E27EDD000C2B98E /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21FA02E27EDD000C2B98E /* CurrencyTableViewCell.swift */; };
 		91F21FA32E2949BD00C2B98E /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21FA22E2949BD00C2B98E /* KeychainManager.swift */; };
+		91F21FA62E296CD800C2B98E /* DetailScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +69,7 @@
 		91F21F9E2E26AB3600C2B98E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		91F21FA02E27EDD000C2B98E /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		91F21FA22E2949BD00C2B98E /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailScreenViewController.swift; path = CryptoKeeper/Entities/DetailScreenViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 		91F21FA42E296C7000C2B98E /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				91F21F952E26A82A00C2B98E /* MainScreenInteractor.swift in Sources */,
 				91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */,
 				91F21F7D2E2664AC00C2B98E /* LoginScreenInteractor.swift in Sources */,
+				91F21FA62E296CD800C2B98E /* DetailScreenViewController.swift in Sources */,
 				91F21F992E26A8FD00C2B98E /* MainScreenModel.swift in Sources */,
 				91F21F9F2E26AB3700C2B98E /* NetworkManager.swift in Sources */,
 				91F21F632E265F9800C2B98E /* SceneDelegate.swift in Sources */,

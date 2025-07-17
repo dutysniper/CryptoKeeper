@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainScreenAssembler {
-	func assembly(onExit: @escaping () -> Void, onTransit: @escaping () -> Void) -> MainScreenViewController {
+	func assembly(onExit: @escaping () -> Void, onTransit: @escaping (_ coin: MainScreenModel.ViewModel.CurrencyDisplay) -> Void) -> MainScreenViewController {
 		let viewController = MainScreenViewController()
 		let networkManager = NetworkManager()
 		let presenter = MainScreenPresenter(viewController: viewController, onExit: onExit, onTransit: onTransit)

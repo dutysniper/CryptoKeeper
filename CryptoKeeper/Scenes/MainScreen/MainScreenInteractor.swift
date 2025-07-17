@@ -60,7 +60,7 @@ final class MainScreenInteractor: IMainScreenInteractor {
 	}
 
 	func openDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
-		presenter.op
+		presenter?.presentDetailScreen(coin: coin)
 	}
 	// MARK: - Private methods
 }

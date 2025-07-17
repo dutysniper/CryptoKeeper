@@ -22,10 +22,10 @@ final class MainScreenPresenter: IMainScreenPresenter {
 	// MARK: - Private methods
 	private var isAscendingSort = true
 	private let onExit: () -> Void
-	private let onTransit: () -> Void
+	private let onTransit: (_ coin: MainScreenModel.ViewModel.CurrencyDisplay) -> Void
 
 	// MARK: - Initialization
-	init(viewController: IMainScreenViewController?, onExit: @escaping () -> Void, onTransit: @escaping () -> Void) {
+	init(viewController: IMainScreenViewController?, onExit: @escaping () -> Void, onTransit: @escaping (_ coin: MainScreenModel.ViewModel.CurrencyDisplay) -> Void) {
 		self.viewController = viewController
 		self.onExit = onExit
 		self.onTransit = onTransit
@@ -51,7 +51,7 @@ final class MainScreenPresenter: IMainScreenPresenter {
 	}
 
 	func presentDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
-
+		onTransit(coin)
 	}
 
 	// MARK: - Private methods
@@ -65,7 +65,11 @@ final class MainScreenPresenter: IMainScreenPresenter {
 				symbol: currency.symbol.uppercased(),
 				name: currency.name,
 				price: price,
-				priceChange: priceChange,
+				priceChange: Double(priceChange) ?? 0,
+				priceChangeInWeek: currency.metrics.roiData.percentChangeUsdLastWeek ?? 0,
+				priceChangeInMonth: currency.metrics.roiData.percentChangeUsdLastMonth ?? 0,
+				priceChangeInYear: currency.metrics.roiData.percentChangeUsdLastyear ?? 0,
+				priceChangeInAllTime: currency.metrics.allTimeHigh.percentDown ?? 0,
 				capitalization: String(currency.metrics.marketCap.capitalization),
 				supply: String(currency.metrics.supply.circulating),
 				changeColor: color
