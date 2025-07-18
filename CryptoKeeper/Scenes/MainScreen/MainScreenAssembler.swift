@@ -6,7 +6,10 @@
 //
 
 import UIKit
-
+/// Сборка модуля главного экрана
+/// - Parameter onExit: замыкание оповещающие о логауте
+/// - Parameter onTransit: замыкание оповещающие о переходе на другой экран
+/// - Returns: viewController
 final class MainScreenAssembler {
 	func assembly(onExit: @escaping () -> Void, onTransit: @escaping (_ coin: MainScreenModel.ViewModel.CurrencyDisplay) -> Void) -> MainScreenViewController {
 		let viewController = MainScreenViewController()

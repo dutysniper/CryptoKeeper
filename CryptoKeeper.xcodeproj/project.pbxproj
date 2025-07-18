@@ -114,7 +114,7 @@
 		91F21F742E26619700C2B98E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				91F21FA42E296C7000C2B98E /* New Group */,
+				91F21FA42E296C7000C2B98E /* DetailScreen */,
 				91F21F912E26A4B000C2B98E /* MainScreen */,
 				91F21F7B2E26646900C2B98E /* LoginScreen */,
 				91F21F9C2E26AAF000C2B98E /* TabBarController.swift */,
@@ -194,12 +194,12 @@
 			path = MainScreen;
 			sourceTree = "<group>";
 		};
-		91F21FA42E296C7000C2B98E /* New Group */ = {
+		91F21FA42E296C7000C2B98E /* DetailScreen */ = {
 			isa = PBXGroup;
 			children = (
 				91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */,
 			);
-			path = "New Group";
+			path = DetailScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

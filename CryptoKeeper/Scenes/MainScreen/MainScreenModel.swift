@@ -25,7 +25,7 @@ enum MainScreenModel {
 			let symbol: String
 			let name: String
 			let price: String
-			let priceChange: Double
+			let priceChange: String
 			let priceChangeInWeek: Double
 			let priceChangeInMonth: Double
 			let priceChangeInYear: Double

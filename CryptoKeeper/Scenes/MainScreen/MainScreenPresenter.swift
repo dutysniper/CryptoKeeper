@@ -34,9 +34,7 @@ final class MainScreenPresenter: IMainScreenPresenter {
 	// MARK: - Public methods
 	func present(response: MainScreenModel.Response) {
 		let viewModel = mapToViewModel(response: response)
-		let sortedViewModel = viewModel.currencies.sorted {
-			isAscendingSort ? $0.price < $1.price : $0.price > $1.price
-		}
+
 		viewController?.displayCurrencies(viewModel: viewModel)
 	}
 
@@ -46,7 +44,6 @@ final class MainScreenPresenter: IMainScreenPresenter {
 	}
 
 	func popToLogin() {
-		print("logout presenter")
 		onExit()
 	}
 
@@ -59,13 +56,13 @@ final class MainScreenPresenter: IMainScreenPresenter {
 		let currencies = response.data.map { currency in
 			let price = formatPrice(currency.metrics.marketData.priceUsd)
 			let (priceChange, color) = formatPriceChange(currency.metrics.marketData.percentChangeUsdLast24Hours)
-
+			print(priceChange)
 			return MainScreenModel.ViewModel.CurrencyDisplay(
 				id: currency.id,
 				symbol: currency.symbol.uppercased(),
 				name: currency.name,
 				price: price,
-				priceChange: Double(priceChange) ?? 0,
+				priceChange: priceChange,
 				priceChangeInWeek: currency.metrics.roiData.percentChangeUsdLastWeek ?? 0,
 				priceChangeInMonth: currency.metrics.roiData.percentChangeUsdLastMonth ?? 0,
 				priceChangeInYear: currency.metrics.roiData.percentChangeUsdLastyear ?? 0,

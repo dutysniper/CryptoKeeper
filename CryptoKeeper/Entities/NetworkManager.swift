@@ -46,6 +46,7 @@ final class NetworkManager: INetworkManager {
 					return
 				}
 				DispatchQueue.main.async {
+					print(filtered.first?.metrics.allTimeHigh.percentDown)
 					completion(.success(filtered))
 				}
 			} catch {

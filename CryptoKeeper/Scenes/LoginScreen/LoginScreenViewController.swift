@@ -92,6 +92,11 @@ final class LoginScreenViewController: UIViewController {
 			attributes: attributes
 		)
 
+		textField.layer.shadowColor = UIColor.gray.cgColor
+		textField.layer.shadowOffset = CGSize(width: 0, height: 0)
+		textField.layer.shadowOpacity = 0.1
+		textField.layer.shadowRadius = 10
+
 		textField.backgroundColor = .white
 		textField.textColor = .black
 		textField.keyboardAppearance = .light
@@ -133,6 +138,7 @@ final class LoginScreenViewController: UIViewController {
 		let button = UIButton()
 		button.backgroundColor = UIColor(named: "loginButtonColor")
 		button.tintColor = .white
+		button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
 		button.layer.cornerRadius = 25
 		button.setTitle("Login", for: .normal)
 		button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
@@ -150,20 +156,17 @@ final class LoginScreenViewController: UIViewController {
 		interactor?.login(with: request)
 	}
 
-	// Анимация при нажатии
 	@objc private func buttonPressed(_ sender: UIButton) {
 		UIView.animate(withDuration: 0.1) {
 			sender.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
 		}
 	}
 
-	// Анимация при отпускании
 	@objc private func buttonReleased(_ sender: UIButton) {
 		UIView.animate(withDuration: 0.1) {
 			sender.transform = .identity
 		}
 	}
-
 
 	// MARK: - Layout
 	private func layout() {
@@ -176,13 +179,13 @@ final class LoginScreenViewController: UIViewController {
 
 		loginTextField.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(16)
-			make.height.equalTo(55)
+			make.height.equalTo(60)
 		}
 
 		passwordTextField.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(16)
-			make.height.equalTo(55)
-			make.top.equalTo(loginTextField.snp.bottom).offset(8)
+			make.height.equalTo(60)
+			make.top.equalTo(loginTextField.snp.bottom).offset(16)
 			make.bottom.equalTo(loginButton.snp.top).offset(-16)
 		}
 

@@ -34,7 +34,6 @@ final class MainScreenInteractor: IMainScreenInteractor {
 		networkManager?.fetchData(completion: { [weak self] result in
 			switch result {
 			case .success(let response):
-				print("Капитализация \(response.first?.metrics.marketCap.capitalization)")
 				let response = MainScreenModel.Response(data: response)
 				self?.presenter?.present(response: response)
 			case .failure(let error):
@@ -62,5 +61,4 @@ final class MainScreenInteractor: IMainScreenInteractor {
 	func openDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
 		presenter?.presentDetailScreen(coin: coin)
 	}
-	// MARK: - Private methods
 }

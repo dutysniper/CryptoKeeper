@@ -13,7 +13,6 @@ protocol IMainScreenViewController: AnyObject {
 }
 
 final class MainScreenViewController: UIViewController {
-	// MARK: - Public properties
 	// MARK: - Dependencies
 	var interactor: IMainScreenInteractor?
 	// MARK: - Private properties
@@ -26,14 +25,20 @@ final class MainScreenViewController: UIViewController {
 	}()
 
 	private lazy var currencyListTableView = makeTableView()
-	private lazy var moreButton = makeButton()
 	private lazy var cubeImageView = makeImageView()
 	private lazy var menuView = makeView()
 	private lazy var backgroundView = makeBackgroundView()
 	private lazy var sortButton = makeSortButton()
 	private lazy var trendingLabel = makeLabel()
+	private lazy var learnMoreButton = makeButton()
+	private lazy var affilateLabel: UILabel = {
+		let label = UILabel()
+		label.text = "Affilate program"
+		label.textColor = .white
+		label.font = .systemFont(ofSize: 26, weight: .regular)
 
-
+		return label
+	}()
 
 	private var sortByDescending = true
 	private var viewModel: MainScreenModel.ViewModel?
@@ -53,19 +58,13 @@ final class MainScreenViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
-//		setupTableHeader()
 		interactor?.fetch()
 	}
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		layout()
-		view.bringSubviewToFront(moreButton)
 	}
-
-	// MARK: - Public methods
-
-	// MARK: - Private methods
 }
 
 // MARK: - IMainScreenViewController
@@ -83,13 +82,43 @@ extension MainScreenViewController: IMainScreenViewController {
 private extension MainScreenViewController {
 
 	func setupUI() {
+		
 		view.backgroundColor = UIColor(named: "pink")
+		let titleLabel = UILabel()
+		titleLabel.text = "Home"
+		titleLabel.font = UIFont.systemFont(ofSize: 34, weight: .semibold) // Для обычного title
+		titleLabel.textColor = .white
+		titleLabel.textAlignment = .left
+		titleLabel.sizeToFit()
+
+		let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+		containerView.addSubview(titleLabel)
+
+		titleLabel.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: -48),
+			titleLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+		])
+
+		navigationItem.titleView = containerView
+		navigationItem.largeTitleDisplayMode = .never
+
+		let button = UIButton(type: .system)
+		let largeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .bold, scale: .large)
+		button.setImage(UIImage(systemName: "ellipsis.circle.fill", withConfiguration: largeConfig), for: .normal)
+		button.tintColor = .white
+		button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+
+		navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+		navigationItem.rightBarButtonItem?.tintColor = .white
 		view.addSubview(activityIndicator)
+		view.addSubview(affilateLabel)
+		view.addSubview(learnMoreButton)
 		view.addSubview(cubeImageView)
 		view.addSubview(backgroundView)
 		view.addSubview(currencyListTableView)
 		view.addSubview(menuView)
-		view.addSubview(moreButton)
+
 		menuView.isHidden = true
 
 		view.bringSubviewToFront(activityIndicator)
@@ -112,7 +141,7 @@ private extension MainScreenViewController {
 		let label = UILabel()
 
 		label.text = "Trending"
-		label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+		label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
 		label.textColor = .black
 
 		return label
@@ -153,13 +182,11 @@ private extension MainScreenViewController {
 	func makeButton() -> UIButton {
 		let button = UIButton(type: .system)
 
-		var config = UIButton.Configuration.plain()
-		config.image = UIImage(systemName: "ellipsis.circle.fill")
-		config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 32)
-		config.baseForegroundColor = .white
-
-		button.configuration = config
-		button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+		button.setTitle("Learn more", for: .normal)
+		button.layer.cornerRadius = 22
+		button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+		button.backgroundColor = UIColor(named: "BackgroundColor")
+		button.tintColor = .black
 
 		return button
 	}
@@ -219,12 +246,10 @@ private extension MainScreenViewController {
 	}
 
 	@objc func logOut() {
-		print("logout vc")
 		interactor?.closeScreen()
 	}
 
 	@objc func buttonTapped() {
-		print("taptaptap")
 		UIView.animate(withDuration: 0.3) {
 			self.menuView.isHidden.toggle()
 			self.view.layoutIfNeeded()
@@ -243,35 +268,38 @@ extension MainScreenViewController {
 	func layout() {
 		activityIndicator.snp.makeConstraints { make in
 			make.center.equalToSuperview()
-			make.width.height.equalTo(80)
+			make.width.height.equalTo(40)
 		}
 
-		moreButton.snp.makeConstraints { make in
-			make.height.width.equalTo(48)
-			make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-			make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+		affilateLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(30)
+			make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(45)
+		}
+		learnMoreButton.snp.makeConstraints { make in
+			make.width.equalTo(160)
+			make.height.equalTo(45)
+			make.top.equalTo(affilateLabel.snp.bottom).offset(12)
+			make.leading.equalToSuperview().offset(30)
 		}
 
 		menuView.snp.makeConstraints { make in
 			make.width.equalTo(150)
 			make.height.equalTo(100)
-			make.trailing.equalTo(moreButton.snp.trailing)
-			make.top.equalTo(moreButton.snp.bottom).offset(8)
+			make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+			make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
 		}
 
 		backgroundView.snp.makeConstraints { make in
 			make.leading.trailing.bottom.equalToSuperview()
-			make.height.equalToSuperview().multipliedBy(0.6)
+			make.height.equalToSuperview().multipliedBy(0.65)
 		}
 
 		cubeImageView.snp.makeConstraints { make in
-			make.width.equalTo(250)
-			make.height.equalTo(250)
+			make.width.equalTo(300)
+			make.height.equalTo(300)
 			make.trailing.equalToSuperview().offset(35)
-			make.bottom.equalTo(backgroundView.snp.top).offset(85)
+			make.bottom.equalTo(backgroundView.snp.top).offset(110)
 		}
-
-
 
 		currencyListTableView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
@@ -304,6 +332,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		guard let coin = viewModel?.currencies[indexPath.row] else { return }
+		print(coin.priceChangeInAllTime)
 		interactor?.openDetailScreen(coin: coin)
 	}
 }

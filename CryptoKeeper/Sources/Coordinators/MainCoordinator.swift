@@ -95,8 +95,15 @@ final class MainCoordinator: BaseCoordinator {
 			image: UIImage(named: "Home"),
 			selectedImage: UIImage(named: "Home")
 		)
+
+		let mainNavController = UINavigationController(rootViewController: mainViewController)
+		mainNavController.tabBarItem = UITabBarItem(
+			title: "",
+			image: UIImage(named: "Home"),
+			selectedImage: UIImage(named: "Home")
+		)
 		let controllers = [
-			mainViewController,
+			mainNavController,
 			firstEmptyScreen,
 			secondEmptyScreen,
 			thirdEmptyScreen,
@@ -131,7 +138,11 @@ final class MainCoordinator: BaseCoordinator {
 
 	func showDetailScreen(coin: MainScreenModel.ViewModel.CurrencyDisplay) {
 		let viewController = DetailScreenViewController(viewModel: coin)
-		navigationController.pushViewController(viewController, animated: true)
+		viewController.hidesBottomBarWhenPushed = false
+		if let tabBar = navigationController.viewControllers.first as? UITabBarController,
+		   let selectedNav = tabBar.selectedViewController as? UINavigationController {
+			selectedNav.pushViewController(viewController, animated: true)
+		}
 	}
 
 	private func createLoginScreen() -> UIViewController {

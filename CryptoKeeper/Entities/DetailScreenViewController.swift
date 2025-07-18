@@ -13,8 +13,14 @@ final class DetailScreenViewController: UIViewController {
 
 	var viewModel: MainScreenModel.ViewModel.CurrencyDisplay?
 
-	// MARK: - Dependencies
 	// MARK: - Private properties
+
+	private lazy var downView = makeView()
+	private lazy var marketStatisticLabel = makeLabel(text: "Market Statistic")
+	private lazy var marketCapLabel = makeLabel(text: "Market capitalization")
+	private lazy var supplyLabel = makeLabel(text: "Circulating supply")
+	private lazy var capValueLabel = makeLabel(text: "test")
+	private lazy var supplyValueLabel = makeLabel(text: "test")
 
 	private enum PricePeriod: Int {
 		case day = 0
@@ -37,7 +43,7 @@ final class DetailScreenViewController: UIViewController {
 	private lazy var priceLabel: UILabel = {
 		let label = UILabel()
 
-		label.font = .systemFont(ofSize: 24, weight: .bold)
+		label.font = .systemFont(ofSize: 24, weight: .medium)
 		label.textColor = .black
 
 		return label
@@ -55,8 +61,8 @@ final class DetailScreenViewController: UIViewController {
 	private lazy var segmentedControl: UISegmentedControl = {
 		let items = ["24H", "1W", "1M", "1Y", "All"]
 		let sc = SegmentedControl(cornerRadius: 25)
-		items.forEach { title in
-			sc.insertSegment(withTitle: title, at: 0, animated: true)
+		items.enumerated().forEach { index, title in
+			sc.insertSegment(withTitle: title, at: index, animated: true)
 		}
 		sc.selectedSegmentIndex = 0
 		sc.selectedSegmentTintColor = .white
@@ -69,17 +75,6 @@ final class DetailScreenViewController: UIViewController {
 		return sc
 	}()
 
-	private lazy var marketCapLabel: UILabel = {
-		let label = UILabel()
-		label.font = .systemFont(ofSize: 16)
-		return label
-	}()
-
-	private lazy var circulatingSupplyLabel: UILabel = {
-		let label = UILabel()
-		label.font = .systemFont(ofSize: 16)
-		return label
-	}()
 	// MARK: - Initialization
 
 	init(viewModel: MainScreenModel.ViewModel.CurrencyDisplay?) {
@@ -95,15 +90,13 @@ final class DetailScreenViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		tabBarController?.tabBar.isHidden = false
-		hidesBottomBarWhenPushed = false
-		print(viewModel?.name)
+		setupUI()
 		configure()
 	}
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		setupUI()
+		layout()
 	}
 
 	@objc private func backButtonTapped() {
@@ -114,11 +107,91 @@ final class DetailScreenViewController: UIViewController {
 // MARK: - SetupUI
 
 private extension DetailScreenViewController {
-	private func setupUI() {
-		view.backgroundColor = UIColor(named: "BackgroundColor")
-		[nameLabel, priceLabel, priceChangedLabel, segmentedControl, marketCapLabel, circulatingSupplyLabel].forEach { subView in
+	 func setupUI() {
+		view.backgroundColor = UIColor(named: "DetailBackgroundColor")
+		view.addSubview(downView)
+		[nameLabel, priceLabel, priceChangedLabel, segmentedControl].forEach { subView in
 			view.addSubview(subView)
 		}
+		 [marketStatisticLabel, marketCapLabel, supplyLabel, capValueLabel, supplyValueLabel].forEach { subView in
+			 downView.addSubview(subView)
+		 }
+	}
+
+	func makeLabel(text: String) -> UILabel {
+		let label = UILabel()
+		label.text = text
+		switch text {
+		case "Market Statistic":
+			label.font = .systemFont(ofSize: 20, weight: .medium)
+			label.textColor = .black
+		case "Market capitalization", "Circulating supply":
+			label.font = .systemFont(ofSize: 14, weight: .semibold)
+			label.textColor = UIColor(named: "GrayTextColor")
+		default:
+			label.font = .systemFont(ofSize: 14, weight: .semibold)
+			label.textColor = .black
+		}
+
+		return label
+	}
+
+	func makeView() -> UIView {
+		let downView = UIView()
+		downView.layer.cornerRadius = 30
+		downView.backgroundColor = UIColor(named: "BackgroundColor")
+
+		return downView
+	}
+
+	func configure() {
+		guard let viewModel = viewModel else { return }
+
+		priceLabel.text = viewModel.price
+		nameLabel.text = "\(viewModel.name) (\(viewModel.symbol))"
+		updateChangeLabel(for: selectedPeriod)
+		capValueLabel.text = "$\(viewModel.capitalization)"
+		supplyValueLabel.text = " \(viewModel.supply) \(viewModel.symbol)"
+
+	}
+
+	private func updateChangeLabel(for period: PricePeriod) {
+		var change = 0.0
+		guard let dayPriceNumber = Double(viewModel?.priceChange.replacingOccurrences(of: "%", with: "") ?? "") else
+		{ return }
+
+		switch period {
+		case .day:
+			change = dayPriceNumber
+		case .week:
+			change = viewModel?.priceChangeInWeek ?? 0
+		case .month:
+			change = viewModel?.priceChangeInMonth ?? 0
+		case .year:
+			change = viewModel?.priceChangeInYear ?? 0
+		case .all:
+			change = viewModel?.priceChangeInAllTime ?? 0
+		}
+
+		let changeString = String(format: "%.2f%%", change)
+		priceChangedLabel.text = (changeString)
+		priceChangedLabel.textColor = change >= 0 ? .systemGreen : .systemRed
+	}
+
+	@objc private func periodChanged(_ sender: UISegmentedControl) {
+		guard sender.selectedSegmentIndex >= 0 && sender.selectedSegmentIndex <= PricePeriod.all.rawValue else {
+			return
+		}
+		guard let period = PricePeriod(rawValue: sender.selectedSegmentIndex) else { return }
+		selectedPeriod = period
+		updateChangeLabel(for: period)
+	}
+}
+
+// MARK: - Layout
+
+private extension DetailScreenViewController {
+	func layout() {
 		nameLabel.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
 			make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
@@ -139,45 +212,32 @@ private extension DetailScreenViewController {
 			make.top.equalTo(priceChangedLabel.snp.bottom).offset(20)
 			make.height.equalTo(60)
 		}
-	}
 
-	private func configure() {
-		priceLabel.text = viewModel?.price
-		nameLabel.text = "\(viewModel?.name ?? "Coin") (\(viewModel?.symbol ?? "name"))"
-		updateChangeLabel(for: selectedPeriod)
-
-	}
-
-	private func updateChangeLabel(for period: PricePeriod) {
-		var change = 0.0
-		var periodText = ""
-
-		switch period {
-		case .day:
-			change = viewModel?.priceChange ?? 0
-			periodText = "24H"
-		case .week:
-			change = viewModel?.priceChangeInWeek ?? 0
-			periodText = "1W"
-		case .month:
-			change = viewModel?.priceChangeInMonth ?? 0
-		case .year:
-			change = viewModel?.priceChangeInYear ?? 0
-			periodText = "1Y"
-		case .all:
-			change = viewModel?.priceChangeInAllTime ?? 0
-			periodText = "All"
+		downView.snp.makeConstraints { make in
+			make.leading.trailing.equalToSuperview()
+			make.height.equalToSuperview().multipliedBy(0.2)
+			make.bottom.equalToSuperview().offset(16)
+		}
+		marketStatisticLabel.snp.makeConstraints { make in
+			make.top.leading.equalToSuperview().offset(16)
+		}
+		marketCapLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(16)
+			make.top.equalTo(marketStatisticLabel.snp.bottom).offset(16)
+		}
+		supplyLabel.snp.makeConstraints { make in
+			make.leading.equalToSuperview().offset(16)
+			make.top.equalTo(marketCapLabel.snp.bottom).offset(16)
+		}
+		capValueLabel.snp.makeConstraints { make in
+			make.trailing.equalToSuperview().offset(-16)
+			make.top.equalTo(marketCapLabel.snp.top)
 		}
 
-		let changeString = String(format: "%.2f%%", change)
-		priceChangedLabel.text = "\(periodText): \(changeString)"
-		priceChangedLabel.textColor = change >= 0 ? .systemGreen : .systemRed
-	}
-
-	@objc private func periodChanged(_ sender: UISegmentedControl) {
-		guard let period = PricePeriod(rawValue: sender.selectedSegmentIndex) else { return }
-		selectedPeriod = period
-		updateChangeLabel(for: period)
+		supplyValueLabel.snp.makeConstraints { make in
+			make.trailing.equalToSuperview().offset(-16)
+			make.top.equalTo(supplyLabel.snp.top)
+		}
 	}
 }
 
