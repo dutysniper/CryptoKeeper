@@ -9,19 +9,67 @@
 /* Begin PBXBuildFile section */
 		91F21F612E265F9800C2B98E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F602E265F9800C2B98E /* AppDelegate.swift */; };
 		91F21F632E265F9800C2B98E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F622E265F9800C2B98E /* SceneDelegate.swift */; };
-		91F21F652E265F9800C2B98E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F642E265F9800C2B98E /* ViewController.swift */; };
+		91F21F652E265F9800C2B98E /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F642E265F9800C2B98E /* LoginScreenViewController.swift */; };
 		91F21F6A2E265F9A00C2B98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91F21F692E265F9A00C2B98E /* Assets.xcassets */; };
 		91F21F6D2E265F9A00C2B98E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 91F21F6C2E265F9A00C2B98E /* Base */; };
+		91F21F7D2E2664AC00C2B98E /* LoginScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F7C2E2664AB00C2B98E /* LoginScreenInteractor.swift */; };
+		91F21F7F2E2664B600C2B98E /* LoginScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F7E2E2664B600C2B98E /* LoginScreenPresenter.swift */; };
+		91F21F812E2664C300C2B98E /* LoginScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F802E2664C300C2B98E /* LoginScreenModel.swift */; };
+		91F21F832E2666CB00C2B98E /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F822E2666CB00C2B98E /* ICoordinator.swift */; };
+		91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F842E2666F800C2B98E /* AppCoordinator.swift */; };
+		91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F862E26675000C2B98E /* MainCoordinator.swift */; };
+		91F21F892E2667CD00C2B98E /* LoginScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */; };
+		91F21F8C2E266A7000C2B98E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91F21F8B2E266A7000C2B98E /* SnapKit */; };
+		91F21F932E26A4C400C2B98E /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F922E26A4C400C2B98E /* MainScreenViewController.swift */; };
+		91F21F952E26A82A00C2B98E /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F942E26A82A00C2B98E /* MainScreenInteractor.swift */; };
+		91F21F972E26A89500C2B98E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F962E26A89500C2B98E /* MainScreenPresenter.swift */; };
+		91F21F992E26A8FD00C2B98E /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F982E26A8FD00C2B98E /* MainScreenModel.swift */; };
+		91F21F9B2E26A90800C2B98E /* MainScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F9A2E26A90800C2B98E /* MainScreenAssembler.swift */; };
+		91F21F9D2E26AAF000C2B98E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F9C2E26AAF000C2B98E /* TabBarController.swift */; };
+		91F21F9F2E26AB3700C2B98E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21F9E2E26AB3600C2B98E /* NetworkManager.swift */; };
+		91F21FA12E27EDD000C2B98E /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21FA02E27EDD000C2B98E /* CurrencyTableViewCell.swift */; };
+		91F21FA32E2949BD00C2B98E /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21FA22E2949BD00C2B98E /* KeychainManager.swift */; };
+		91F21FA62E296CD800C2B98E /* DetailScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91F21F902E266D0800C2B98E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		91F21F5D2E265F9800C2B98E /* CryptoKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F21F602E265F9800C2B98E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91F21F622E265F9800C2B98E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		91F21F642E265F9800C2B98E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		91F21F642E265F9800C2B98E /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		91F21F692E265F9A00C2B98E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91F21F6C2E265F9A00C2B98E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91F21F6E2E265F9A00C2B98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F21F7C2E2664AB00C2B98E /* LoginScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenInteractor.swift; sourceTree = "<group>"; };
+		91F21F7E2E2664B600C2B98E /* LoginScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenPresenter.swift; sourceTree = "<group>"; };
+		91F21F802E2664C300C2B98E /* LoginScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenModel.swift; sourceTree = "<group>"; };
+		91F21F822E2666CB00C2B98E /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
+		91F21F842E2666F800C2B98E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		91F21F862E26675000C2B98E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenAssembler.swift; sourceTree = "<group>"; };
+		91F21F922E26A4C400C2B98E /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		91F21F942E26A82A00C2B98E /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
+		91F21F962E26A89500C2B98E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		91F21F982E26A8FD00C2B98E /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
+		91F21F9A2E26A90800C2B98E /* MainScreenAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenAssembler.swift; sourceTree = "<group>"; };
+		91F21F9C2E26AAF000C2B98E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		91F21F9E2E26AB3600C2B98E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		91F21FA02E27EDD000C2B98E /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		91F21FA22E2949BD00C2B98E /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailScreenViewController.swift; path = CryptoKeeper/Entities/DetailScreenViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F21F8C2E266A7000C2B98E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +107,6 @@
 				91F21F762E2661B300C2B98E /* Resourcers */,
 				91F21F752E2661A500C2B98E /* Sources */,
 				91F21F742E26619700C2B98E /* Scenes */,
-				91F21F642E265F9800C2B98E /* ViewController.swift */,
 			);
 			path = CryptoKeeper;
 			sourceTree = "<group>";
@@ -66,6 +114,10 @@
 		91F21F742E26619700C2B98E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				91F21FA42E296C7000C2B98E /* DetailScreen */,
+				91F21F912E26A4B000C2B98E /* MainScreen */,
+				91F21F7B2E26646900C2B98E /* LoginScreen */,
+				91F21F9C2E26AAF000C2B98E /* TabBarController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -93,6 +145,8 @@
 		91F21F772E2661C200C2B98E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				91F21F9E2E26AB3600C2B98E /* NetworkManager.swift */,
+				91F21FA22E2949BD00C2B98E /* KeychainManager.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -101,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				91F21F7A2E26629F00C2B98E /* Common */,
+				91F21F842E2666F800C2B98E /* AppCoordinator.swift */,
+				91F21F862E26675000C2B98E /* MainCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -108,8 +164,42 @@
 		91F21F7A2E26629F00C2B98E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				91F21F822E2666CB00C2B98E /* ICoordinator.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		91F21F7B2E26646900C2B98E /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				91F21F642E265F9800C2B98E /* LoginScreenViewController.swift */,
+				91F21F7C2E2664AB00C2B98E /* LoginScreenInteractor.swift */,
+				91F21F7E2E2664B600C2B98E /* LoginScreenPresenter.swift */,
+				91F21F802E2664C300C2B98E /* LoginScreenModel.swift */,
+				91F21F882E2667CD00C2B98E /* LoginScreenAssembler.swift */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		91F21F912E26A4B000C2B98E /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				91F21F922E26A4C400C2B98E /* MainScreenViewController.swift */,
+				91F21F942E26A82A00C2B98E /* MainScreenInteractor.swift */,
+				91F21F962E26A89500C2B98E /* MainScreenPresenter.swift */,
+				91F21F982E26A8FD00C2B98E /* MainScreenModel.swift */,
+				91F21F9A2E26A90800C2B98E /* MainScreenAssembler.swift */,
+				91F21FA02E27EDD000C2B98E /* CurrencyTableViewCell.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		91F21FA42E296C7000C2B98E /* DetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				91F21FA52E296CD800C2B98E /* DetailScreenViewController.swift */,
+			);
+			path = DetailScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,12 +212,16 @@
 				91F21F592E265F9800C2B98E /* Sources */,
 				91F21F5A2E265F9800C2B98E /* Frameworks */,
 				91F21F5B2E265F9800C2B98E /* Resources */,
+				91F21F902E266D0800C2B98E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CryptoKeeper;
+			packageProductDependencies = (
+				91F21F8B2E266A7000C2B98E /* SnapKit */,
+			);
 			productName = CryptoKeeper;
 			productReference = 91F21F5D2E265F9800C2B98E /* CryptoKeeper.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +250,9 @@
 				Base,
 			);
 			mainGroup = 91F21F542E265F9800C2B98E;
+			packageReferences = (
+				91F21F8A2E266A7000C2B98E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 91F21F5E2E265F9800C2B98E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -182,9 +279,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91F21F652E265F9800C2B98E /* ViewController.swift in Sources */,
+				91F21F652E265F9800C2B98E /* LoginScreenViewController.swift in Sources */,
+				91F21F9D2E26AAF000C2B98E /* TabBarController.swift in Sources */,
+				91F21F812E2664C300C2B98E /* LoginScreenModel.swift in Sources */,
 				91F21F612E265F9800C2B98E /* AppDelegate.swift in Sources */,
+				91F21FA32E2949BD00C2B98E /* KeychainManager.swift in Sources */,
+				91F21F7F2E2664B600C2B98E /* LoginScreenPresenter.swift in Sources */,
+				91F21F892E2667CD00C2B98E /* LoginScreenAssembler.swift in Sources */,
+				91F21F952E26A82A00C2B98E /* MainScreenInteractor.swift in Sources */,
+				91F21F852E2666F800C2B98E /* AppCoordinator.swift in Sources */,
+				91F21F7D2E2664AC00C2B98E /* LoginScreenInteractor.swift in Sources */,
+				91F21FA62E296CD800C2B98E /* DetailScreenViewController.swift in Sources */,
+				91F21F992E26A8FD00C2B98E /* MainScreenModel.swift in Sources */,
+				91F21F9F2E26AB3700C2B98E /* NetworkManager.swift in Sources */,
 				91F21F632E265F9800C2B98E /* SceneDelegate.swift in Sources */,
+				91F21F932E26A4C400C2B98E /* MainScreenViewController.swift in Sources */,
+				91F21F872E26675000C2B98E /* MainCoordinator.swift in Sources */,
+				91F21F972E26A89500C2B98E /* MainScreenPresenter.swift in Sources */,
+				91F21F9B2E26A90800C2B98E /* MainScreenAssembler.swift in Sources */,
+				91F21FA12E27EDD000C2B98E /* CurrencyTableViewCell.swift in Sources */,
+				91F21F832E2666CB00C2B98E /* ICoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +521,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91F21F8A2E266A7000C2B98E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91F21F8B2E266A7000C2B98E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91F21F8A2E266A7000C2B98E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91F21F552E265F9800C2B98E /* Project object */;
 }

@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-
+	private var appCoordinator: ICoordinator!
 
 	func scene(
 		_ scene: UIScene,
@@ -20,11 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		guard let scene = (scene as? UIWindowScene) else { return }
 		let window = UIWindow(windowScene: scene)
-
-		self.window = window
-		self.window?.rootViewController = ViewController()
-		self.window?.makeKeyAndVisible()
-
+		
+		appCoordinator = AppCoordinator(window: window)
+		appCoordinator.start()
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
